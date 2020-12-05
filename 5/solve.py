@@ -1,5 +1,3 @@
-from functools import reduce
-
 def read_input(path):
     with open(path, "r") as file:
         for line in file.readlines():
