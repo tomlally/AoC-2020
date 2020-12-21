@@ -19,7 +19,7 @@ table  = [[bin "+" Add AssocLeft, bin "*" Mul AssocLeft]]
 table' = [[bin "+" Add AssocLeft], [bin "*" Mul AssocLeft]]
 
 lit :: Parser Expr
-lit = do Lit <$> integer lex
+lit = Lit <$> integer lex
 
 term :: Parser Expr -> Parser Expr
 term p = lit <|> parens lex p
