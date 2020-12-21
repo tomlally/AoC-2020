@@ -6,7 +6,5 @@ go x xs = length $ filter (==x) $ diffs $ sorted ++ [last sorted + 3]
 
 main :: IO()
 main = do
-    contents <- readFile "input.txt"
-    let input = map read $ words contents :: [Int]
-
+    input <- map read . words <$> readFile "input.txt"
     print $ go 1 input * go 3 input

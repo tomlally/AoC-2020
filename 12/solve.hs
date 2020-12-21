@@ -70,8 +70,7 @@ apply' (Ship' position waypoint) (TurnBy direction degrees) = Ship' position (ro
 
 main :: IO()
 main = do
-    contents <- readFile "input.txt"
-    let input = map (\x -> move (head x) (read $ drop 1 x :: Int)) $ words contents
+    input <- map (\x -> move (head x) (read $ drop 1 x :: Int)) . words <$> readFile "input.txt"
 
     let final = foldl apply (Ship East $ Vector 0 0) input
     let final' = foldl apply' (Ship' (Vector 0 0) (Vector 10 1)) input

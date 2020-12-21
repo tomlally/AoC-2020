@@ -7,13 +7,11 @@ p2 x xs = let cl = head . filter (\xs -> sum xs == x) $ [drop j $ take i xs | i 
 
 main :: IO()
 main = do
-    file <- openFile "input.txt" ReadMode
-    contents <- hGetContents file
-    let list = map read $ words contents :: [Int]
-    
+    list <- map read . words <$> readFile "input.txt"
+
     let a = p1 25 list
     let b = p2 a list
-    
+     
     print a
     print b
     

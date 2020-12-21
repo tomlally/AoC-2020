@@ -41,7 +41,7 @@ def check_ticket(ticket, fields):
 def find_mapping(your, others, fields):
     
     mapping = { }
-    mapped = [False for x in fields]
+    mapped = set()
 
     # remove invalid tickets and append your ticket
     tickets = [ticket for ticket in others if check_ticket(ticket, fields)]
@@ -52,13 +52,13 @@ def find_mapping(your, others, fields):
         
         # look over every 'set' of enties
         for i in range(len(tickets[0])):
-            if not mapped[i]:
+            if i not in mapped:
                 
                 could_be = [field for field in fields if (all(check_field(ticket[i], field) for ticket in tickets) and field[0] not in mapping)]
 
                 if len(could_be) == 1:
                     mapping[could_be[0][0]] = i
-                    mapped[i] = True
+                    mapped.add(i)
 
     return mapping
 

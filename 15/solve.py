@@ -1,7 +1,6 @@
-input = [1,12,0,20,8,16]
-example1 = [1,3,2]
-example2 = [2,1,3]
-example3 = [1,2,3]
+def read_input(path):
+    with open(path, "r") as file:
+        return [int(x) for x in file.read().split(",")]
 
 def solve(input, count):
 
@@ -29,6 +28,7 @@ def solve(input, count):
     return last
 
 def main():
+    input = read_input("input.txt");
     print(solve(input, 2020))
     print(solve(input, 30000000))
 
