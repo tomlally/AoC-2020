@@ -47,8 +47,7 @@ go :: Parser Expr -> [String] -> Integer
 go p = sum . map (ev p)
 
 main = do
-    content <- readFile "input.txt"
-    let line = lines content
+    line <- lines <$> readFile "input.txt"
 
     print $ go expr line
     print $ go expr' line
