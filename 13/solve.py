@@ -16,19 +16,19 @@ def min_time(ids):
     
     # start with a step of 1, having considered none of the ids yet.
     step = 1
-    considered = [False for _ in ids]
+    considered = set()
 
     # check timestep ts.
     def check(ids, ts):
         nonlocal step
-    
+         
         # get a list of which ids are here at this step
         here = list(((ts + idx) % x) == 0 for idx, x in ids)
     
         # for each bus that's here, if it has not already been considered, multiply the step by its period
         for i, (h, (_, v)) in enumerate(zip(here, ids)):
-            if (h and not considered[i]):
-                considered[i] = True
+            if (h and i not in considered):
+                considered.add(i)
                 step *= v
         
         # if they're all here then the search is done
